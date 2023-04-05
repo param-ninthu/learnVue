@@ -1,23 +1,21 @@
 <script setup >
- import {ref , reactive} from 'vue';
- const todo =ref("Boom"); 
+ import {ref } from 'vue';
+ const todo =ref(""); 
 
- console.log(todo); 
+ const emit = defineEmits(['create-todo']);
 
- const todoState = reactive({
-    todo:"Reactive todo"
- })
+const createTodo = () => {
+emit('create-todo');
 
- console.log(todoState); 
- 
+}
+
 
 </script>
 <template>
     <div class="input-wrap">
-        <input type="text" v-model="todoState.todo" />
-        <button> Create </button>
+        <input type="text" v-model="todo" />
+        <button @click="createTodo()"> Create </button>
     </div>
-    <p> {{ todoState.todo }} </p>
 </template>
 <style lang="scss" scoped>
     .input-wrap{
